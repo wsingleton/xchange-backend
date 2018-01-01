@@ -11,4 +11,4 @@ phases:
       - mvn package
 artifacts:
   files:
-    - target/xchange-0.0.1-SNAPSHOT
+    - target/xchange-0.0.1-SNAPSHOT.jar
