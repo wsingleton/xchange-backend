@@ -1,0 +1,13 @@
+com\xchange\services\CompanyService.class
+com\xchange\XChange.class
+com\xchange\controllers\CompanyController.class
+com\xchange\repositories\CompanyRepository.class
+com\xchange\controllers\TestController.class
+com\xchange\repositories\UserRepository.class
+com\xchange\controllers\UserController.class
+com\xchange\models\DTO.class
+com\xchange\services\CompanyServiceImpl.class
+com\xchange\models\Company.class
+com\xchange\services\UserService.class
+com\xchange\services\UserServiceImpl.class
+com\xchange\models\User.class
