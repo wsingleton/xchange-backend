@@ -1,5 +1,6 @@
 package com.xchange.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -23,19 +24,21 @@ public class UserServiceImpl implements UserService {
 	private CompanyRepository companyRepo;
 
 	@Override
-	public User addUser(User u) {
-		for(User user : userRepo.findAll()) {
-			if(user.getUsername().equals(u.getUsername())) {
-				u.setUserName(null);
-				return u;
-			}
-			if(user.getEmail().equals(u.getEmail())) {
-				u.setEmail(null);
-				return u;
-			}
-		}
-		return userRepo.save(u);
-	}
+    public User addUser(User u) {
+        ArrayList<User> users = new ArrayList<User>();
+        users = (ArrayList<User>) userRepo.findAll();
+        for(User user : users) {
+            if(user.getUsername().equals(u.getUsername())) {
+                u.setUserName(null);
+                return u;
+            }
+            if(user.getEmail().equals(u.getEmail())) {
+                u.setEmail(null);
+                return u;
+            }
+        }
+        return userRepo.save(u);
+    }
 
 	@Override
 	public List<User> findAllUsers() {
@@ -58,27 +61,29 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUserById(Long userId, User u) {
-		for(User user : userRepo.findAll()) {
-			if(!user.getUserId().equals(u.getUserId())) {
-				if(user.getUsername().equals(u.getUsername())) {
-					u.setUserName(null);
-					return u;
-				}
-				if(user.getEmail().equals(u.getEmail())) {
-					u.setEmail(null);
-					return u;
-				}
-			}
-		}
-		User user = userRepo.findOne(userId);
-		user.setFirstName(u.getFirstName());
-		user.setLastName(u.getLastName());
-		user.setEmail(u.getEmail());
-		user.setUserName(u.getUsername());
-		user.setPassword(u.getPassword());
-		return userRepo.save(user);
-	}
+    public User updateUserById(Long userId, User u) {
+        ArrayList<User> users = new ArrayList<User>();
+        users = (ArrayList<User>) userRepo.findAll();
+        for(User user : users) {
+            if(!user.getUserId().equals(u.getUserId())) {
+                if(user.getUsername().equals(u.getUsername())) {
+                    u.setUserName(null);
+                    return u;
+                }
+                if(user.getEmail().equals(u.getEmail())) {
+                    u.setEmail(null);
+                    return u;
+                }
+            }
+        }
+        User user = userRepo.findOne(userId);
+        user.setFirstName(u.getFirstName());
+        user.setLastName(u.getLastName());
+        user.setEmail(u.getEmail());
+        user.setUserName(u.getUsername());
+        user.setPassword(u.getPassword());
+        return userRepo.save(user);        
+    }
 
 	public User loginUser(User u) {
 		return userRepo.findUserByUsernameAndPassword(u.getUsername(), u.getPassword());
