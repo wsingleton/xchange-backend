@@ -32,9 +32,9 @@ public class UserController {
 	
 	// [DEV] - Method tested using Postman by WS on 28DEC2017 00:15
 	@RequestMapping(value="/UpdateUser", method=RequestMethod.POST, produces="application/json", consumes="application/json")
-	public void updateUser(@RequestBody User updatedUser) {
+	public User updateUser(@RequestBody User updatedUser) {
 		System.out.println("[LOG] - In /UpdateUser");
-		service.updateUserById(updatedUser.getUserId(), updatedUser);
+		return service.updateUserById(updatedUser.getUserId(), updatedUser);
 	}
 	
 	// [DEV] - Method tested using Postman by WS on 27DEC2017 16:30
