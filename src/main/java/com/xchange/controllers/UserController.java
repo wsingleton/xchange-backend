@@ -1,5 +1,6 @@
 package com.xchange.controllers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -113,6 +114,20 @@ public class UserController {
 	public void removeUserFavorite(@RequestBody DTO dto) {
 		System.out.println("[LOG] - In /RemoveUserFavorite");
 		service.removeUserFavorite(dto.getUserId(), dto.getCompanyId());
+	}
+	
+	// [DEV] - Method tested using Postman by WS on 02JAN2018 20:15
+	@RequestMapping(value="/GetUserSubscribers", method=RequestMethod.POST)
+	public Set<User> getUserSubscribers(@RequestBody User user) {
+		Set<User> userSubscribers = new HashSet<>();
+		for(User u : service.findAllUsers()) {
+			for(User _user : u.getUserSubscriptions()) {
+				if(_user.getUserId() == user.getUserId()) {
+					userSubscribers.add(u);
+				}
+			}
+		}
+		return userSubscribers;
 	}
 		
 }
