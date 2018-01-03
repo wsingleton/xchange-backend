@@ -13,7 +13,7 @@ public class TestController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET, produces="application/json")
 	public String test() {
-		return "testing";
+		return "Testing";
 	}
 
 }
